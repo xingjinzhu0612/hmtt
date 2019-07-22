@@ -74,11 +74,11 @@
 </template>
 
 <script>
-import MyBread from '../../components/my-bread'
+// import MyBread from '../../components/my-bread'
 export default {
-  components: {
-    MyBread
-  },
+//   components: {
+//     MyBread
+//   },
   data () {
     return {
       radio: 3,

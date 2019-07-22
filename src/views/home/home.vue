@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     loginOut () {
-      alert(123)
+      // alert(123)
       window.sessionStorage.removeItem('hmtt', null)
       this.$router.push('/login')
     },
