@@ -50,14 +50,15 @@
         <span @click="toggleMenu()"  class="el-icon-s-fold"></span>
         <span class="txt">传智播客有限公司</span>
         <el-dropdown style="float:right">
-          <img src="../../assets/images/avatar.jpg" alt />
           <span class="el-dropdown-link">
-            下拉菜单
+          <img :src="avator" alt />
+
+            {{name}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-user">个人设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-unlock">退出设置</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-user" @click.native="setting">个人设置</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-unlock" @click.native="loginOut">退出设置</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -72,10 +73,26 @@
 export default {
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      name: '',
+      avator: ''
+
     }
   },
+  created () {
+    const user = JSON.parse(window.sessionStorage.getItem('hmtt'))
+    this.name = user.name
+    this.avator = user.photo
+  },
   methods: {
+    loginOut () {
+      alert(123)
+      window.sessionStorage.removeItem('hmtt', null)
+      this.$router.push('/login')
+    },
+    setting () {
+      this.$router.push('/setting')
+    },
     toggleMenu () {
       this.isCollapse = !this.isCollapse
     }

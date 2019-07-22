@@ -23,4 +23,10 @@ const router = new VueRouter({
     { name: '404', path: '*', component: NotFound }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const user = window.sessionStorage.getItem('hmtt')
+  if (to.path !== '/login' && !user) return next('/login')
+  next()
+})
 export default router
